@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 
 class BaseHH(ABC):
@@ -7,9 +8,9 @@ class BaseHH(ABC):
     """
 
     @abstractmethod
-    def get_status(self):
+    def get_status(self) -> bool:
         pass
 
     @abstractmethod
-    def get_vacancies(self, *args, **kwargs):
+    def get_vacancies(self, *args: Any, **kwargs: Any) -> list:
         pass

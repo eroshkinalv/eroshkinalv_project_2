@@ -1,4 +1,5 @@
 import requests
+
 from src.base_hh import BaseHH
 
 
@@ -35,9 +36,3 @@ class HeadHunterAPI(BaseHH):
             self.__vacancies = requests.get(self.__url).json()['items']
 
         return self.__vacancies
-
-
-if __name__ == '__main__':
-    vacancy = HeadHunterAPI()
-    print(vacancy.get_vacancies('python'))
-

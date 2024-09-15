@@ -65,19 +65,3 @@ class Vacancy(HeadHunterAPI):
             return True
         else:
             return False
-
-
-if __name__ == '__main__':
-    vacancy1 = Vacancy('Разработчик', 'http://hh.ru', '100000 - 150000', 'RUR', 'Администрирование серверов Linux',
-                       'Опыт работы с Linux в качестве администратора от 2 лет')
-    print(vacancy1.job_name)
-    print(vacancy1.vacancy_url)
-    print(vacancy1.salary)
-    print(vacancy1.responsibility)
-    print(vacancy1.requirement)
-
-    print(vacancy1)
-    vacancy2 = Vacancy('Разработчик', 'http://hh.ru', '100000 - None', 'USD', 'Администрирование серверов Linux',
-                       'Опыт работы с Linux в качестве администратора от 2 лет')
-
-    print(vacancy1 == vacancy2)
