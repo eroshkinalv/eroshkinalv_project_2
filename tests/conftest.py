@@ -5,6 +5,9 @@ import pytest
 from src.head_hunter_api import HeadHunterAPI
 from src.save_to_json import JSONSaver
 from src.vacancies import Vacancy
+from src.employers import Employers
+from src.db_manager import DBManager
+from src.db_creator import DBCreator
 
 
 @pytest.fixture
@@ -31,7 +34,8 @@ def vacancy_a():
                    '100000 - 150000',
                    'RUR',
                    'Администрирование серверов Linux',
-                   'Опыт работы с Linux в качестве администратора от 2 лет')
+                   'Опыт работы с Linux в качестве администратора от 2 лет',
+                   '123456')
 
 
 @pytest.fixture
@@ -41,7 +45,8 @@ def vacancy_b():
                    '100000 - 150000',
                    'RUR',
                    'Администрирование серверов Linux',
-                   'Опыт работы с Linux в качестве администратора от 2 лет')
+                   'Опыт работы с Linux в качестве администратора от 2 лет',
+                   '123456')
 
 
 @pytest.fixture
@@ -51,7 +56,8 @@ def vacancy_c():
                    '100000 - 120000',
                    'RUR',
                    'Администрирование серверов Linux',
-                   'Опыт работы с Linux в качестве администратора от 2 лет')
+                   'Опыт работы с Linux в качестве администратора от 2 лет',
+                   '123456')
 
 
 @pytest.fixture
@@ -61,7 +67,8 @@ def vacancy_d():
                    '100000 - 200000',
                    'RUR',
                    'Администрирование серверов Linux',
-                   'Опыт работы с Linux в качестве администратора от 2 лет')
+                   'Опыт работы с Linux в качестве администратора от 2 лет',
+                   '123456')
 
 
 @pytest.fixture
@@ -381,3 +388,55 @@ def json_file():
     }]
     file = json.dumps(data)
     return file
+
+
+@pytest.fixture
+def employers():
+    return [{'id': '2180', 'name': 'Ozon', 'url': 'https://api.hh.ru/employers/2180?locale=RU',
+             'alternate_url': 'https://hh.ru/employer/2180',
+             'logo_urls': {'original': 'https://img.hhcdn.ru/employer-logo-original/1069622.png',
+                           '240': 'https://img.hhcdn.ru/employer-logo/5899118.png',
+                           '90': 'https://img.hhcdn.ru/employer-logo/5899117.png'},
+             'vacancies_url': 'https://api.hh.ru/vacancies?employer_id=2180&locale=RU',
+             'open_vacancies': 15726}]
+
+
+@pytest.fixture
+def db_a():
+    return DBManager("localhost", "5432", "test", "postgres", "123zaq")
+
+
+@pytest.fixture
+def db_b():
+    return DBCreator("localhost", "5432", "test", "postgres", "123zaq")
+
+
+@pytest.fixture
+def db_comp_and_v():
+    return ('ozon', '123')
+
+
+@pytest.fixture
+def employer_a():
+    return Employers('123456', 'MONSTER inc.', 'https://hh.ru/employer/123456', 'https://api.hh.ru/vacancies?employer_id=123456&locale=RU', '123')
+
+
+@pytest.fixture
+def employers_list():
+    return []
+
+
+@pytest.fixture
+def employers_list_a():
+    return [Employers('123456', 'MONSTER inc.', 'https://hh.ru/employer/123456', 'https://api.hh.ru/vacancies?employer_id=123456&locale=RU', '123')]
+
+
+@pytest.fixture
+def vacancies_list_a():
+    return [Vacancy('Разработчик',
+                   'http://hh.ru',
+                   '100000 - 150000',
+                   'RUR',
+                   'Администрирование серверов Linux',
+                   'Опыт работы с Linux в качестве администратора от 2 лет',
+                   '123456')]
