@@ -1,5 +1,5 @@
 import json
-
+from typing import Any
 from src.base_save_to_file import BaseSaveToFile
 from src.vacancies import Vacancy
 
@@ -11,7 +11,7 @@ class JSONSaver(BaseSaveToFile):
 
     __filename: str
 
-    def __init__(self, filename: str = 'vacancies_file') -> None:
+    def __init__(self, filename: str = "vacancies_file") -> None:
         self.__filename = filename
         self.open_file()
 
@@ -21,7 +21,7 @@ class JSONSaver(BaseSaveToFile):
         """
 
         try:
-            with open(rf'..\data\{self.__filename}.json', 'r', encoding='utf-8') as file:
+            with open(rf"..\data\{self.__filename}.json", "r", encoding="utf-8") as file:
                 self.data = json.load(file)
         except FileNotFoundError:
             self.data = []
@@ -32,12 +32,12 @@ class JSONSaver(BaseSaveToFile):
         """
 
         vacancy_data = {
-            'name': vacancy.job_name,
-            'url': vacancy.vacancy_url,
-            'salary': vacancy.salary,
-            'currency': vacancy.currency,
-            'resposibility': vacancy.responsibility,
-            'requirements': vacancy.requirement
+            "name": vacancy.job_name,
+            "url": vacancy.vacancy_url,
+            "salary": vacancy.salary,
+            "currency": vacancy.currency,
+            "resposibility": vacancy.responsibility,
+            "requirements": vacancy.requirement,
         }
 
         self.data.append(vacancy_data)
@@ -49,7 +49,7 @@ class JSONSaver(BaseSaveToFile):
         Сохраняет файл с вакансиями
         """
 
-        with open(rf'..\data\{self.__filename}.json', 'w', encoding='utf-8') as file:
+        with open(rf"..\data\{self.__filename}.json", "w", encoding="utf-8") as file:
             json.dump(self.data, file, indent=4, ensure_ascii=False)
 
     def delete_vacancy(self, vacancy: dict) -> None:
@@ -58,11 +58,11 @@ class JSONSaver(BaseSaveToFile):
         """
 
         for i, datum in enumerate(self.data):
-            if vacancy.get('url') == datum.get('url'):
+            if vacancy.get("url") == datum.get("url"):
                 self.data.pop(i)
         self.add_vacancy()
 
-    def get_vacancy(self) -> None:
+    def get_vacancy(self) -> Any:
         """
         Получает вакансии
         """

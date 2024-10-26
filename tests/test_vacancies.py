@@ -5,6 +5,7 @@ def test_vacancies_init(vacancy_a):
     assert vacancy_a.currency == 'RUR'
     assert vacancy_a.requirement == 'Опыт работы с Linux в качестве администратора от 2 лет'
     assert vacancy_a.responsibility == 'Администрирование серверов Linux'
+    assert vacancy_a.job_id == '123456'
 
 
 def test_vacancies_str(vacancy_a):
