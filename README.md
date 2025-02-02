@@ -1,4 +1,4 @@
-# Проект eroshkinalv_project_2
+# Проект eroshkinalv_project_2: парсер вакансий
 
 ## Описание:
 
